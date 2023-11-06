@@ -7,6 +7,13 @@ def clip_nll(output_dict, target_dict):
     return loss
 
 
+def binary_loss(output_dict, target_dict):
+    loss = nn.BCEWithLogitsLoss()
+    return loss(output_dict, target_dict)
+
+
 def get_loss_func(loss_type):
     if loss_type == 'clip_nll':
         return clip_nll
+    if loss_type == 'binary_loss':
+        return binary_loss

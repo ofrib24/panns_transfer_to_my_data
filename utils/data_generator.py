@@ -6,10 +6,36 @@ import logging
 import os
 import glob
 import matplotlib.pyplot as plt
+from torch.utils.data import Dataset
 import logging
 
 import config
 from utilities import int16_to_float32
+
+
+class CustomAudioDataset(Dataset):
+    def __init__(self, root_dir, split, transform=None):
+        self.root_dir = root_dir
+        self.split = split
+        self.transform = transform
+
+        data_path = root_dir + f"/{split}/sounds_data.npy"
+        labels_path = root_dir + f"/{split}/labels_data.npy"
+
+        self.data = np.load(data_path)
+        self.labels = np.load(labels_path)
+
+    def __getitem__(self, idx):
+        data = self.data[idx, :]
+        label = self.labels[idx]
+
+        if self.transform:
+            data = self.transform(data)
+
+        return data, label
+
+    def __len__(self):
+        return len(self.data)
 
 
 class GtzanDataset(object):

@@ -14,8 +14,7 @@ ref = 1.0
 amin = 1e-10
 top_db = None
 
-labels = ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', 
-    'pop', 'reggae', 'rock']
+labels = ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']
     
 lb_to_idx = {lb: idx for idx, lb in enumerate(labels)}
 idx_to_lb = {idx: lb for idx, lb in enumerate(labels)}
